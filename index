@@ -180,7 +180,7 @@
 
         <!-- Caja de éxito grande -->
         <div id="mensajeExito" class="success-box">
-            ¡Registro completado con éxito! ✅
+            ¡Registro completado con éxito! 
         </div>
     </div>
 
