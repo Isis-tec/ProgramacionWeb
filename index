@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Validación</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal (Tarjeta) */
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Estilos de los grupos de inputs */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        /* --- ESTILOS DE CAJA DE ERROR --- */
+        .error-box {
+            background-color: #ffe6e6; /* Fondo rojo claro */
+            color: #d8000c; /* Texto rojo oscuro */
+            border: 1px solid #ffbaba; /* Borde rojo suave */
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none; /* Oculto por defecto */
+            animation: shake 0.3s; /* Pequeña animación de vibración */
+        }
+
+        /* Clase para mostrar el error con JS */
+        .error-box.show {
+            display: block;
+        }
+
+        /* --- ESTILOS DE CAJA DE ÉXITO --- */
+        .success-box {
+            background-color: #d4edda; /* Fondo verde claro */
+            color: #155724; /* Texto verde oscuro */
+            border: 2px solid #c3e6cb; /* Borde verde */
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 20px;
+            display: none; /* Oculto por defecto */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Clase para mostrar el éxito con JS */
+        .success-box.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        /* Botón de envío */
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        /* Animaciones */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registro</h2>
+
+        <form id="formulario">
+            
+            <div class="input-group">
+                <label>Nombre completo:</label>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez">
+                <!-- Caja de error individual -->
+                <div class="error-box" id="errorNombre">El nombre es obligatorio</div>
+            </div>
+
+            <div class="input-group">
+                <label>Correo electrónico:</label>
+                <input type="email" id="correo" placeholder="juan@ejemplo.com">
+                <div class="error-box" id="errorCorreo">Ingresa un correo válido</div>
+            </div>
+
+            <div class="input-group">
+                <label>Contraseña:</label>
+                <input type="password" id="password" placeholder="••••••••">
+                <div class="error-box" id="errorPassword">La contraseña debe tener 6 caracteres</div>
+            </div>
+
+            <div class="input-group">
+                <label>Confirmar contraseña:</label>
+                <input type="password" id="confirmPassword" placeholder="••••••••">
+                <div class="error-box" id="errorConfirm">Las contraseñas no coinciden</div>
+            </div>
+
+            <button type="submit">Enviar Registro</button>
+        </form>
+
+        <!-- Caja de éxito grande -->
+        <div id="mensajeExito" class="success-box">
+            ¡Registro completado con éxito! ✅
+        </div>
+    </div>
+
+    <script src="validacion.js"></script>
+</body>
+</html>
